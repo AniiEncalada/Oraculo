@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import oraculoReducer from "../features/oraculo/oraculoSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    oraculo: oraculoReducer,
   },
 });
