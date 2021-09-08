@@ -20,7 +20,7 @@
 }
 
 .grupo.jugando {
-  outline: 1px solid coral;
+  outline: 1px solid black;
   pointer-events: initial;
 }
 
@@ -34,6 +34,24 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.grupo-cartas .carta:nth-child(1) {
+  transform: rotate(4deg);
+  top: 0;
+  left: 20px;
+}
+
+.grupo-cartas .carta:nth-child(2) {
+  transform: rotate(4deg);
+  top: 0;
+  left: 15px;
+}
+
+.grupo-cartas .carta:nth-child(3) {
+  transform: rotate(4deg);
+  top: 0;
+  left: 10px;
 }
 
 .grupo-valor {
