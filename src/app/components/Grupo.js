@@ -6,7 +6,13 @@ export const Grupo = ({ nombre, cartas, jugando }) => {
     <div className={`grupo ${jugando ? "jugando" : ""}`}>
       <div className="grupo-cartas">
         {cartas.map((item, index) => (
-          <Carta key={index} {...item} valorGrupo={nombre} cartaIndex={index} />
+          <Carta
+            key={index}
+            {...item}
+            valorGrupo={nombre}
+            cartaIndex={index}
+            habilitada={index === cartas.length - 1}
+          />
         ))}
       </div>
       <div className="grupo-valor">{nombre}</div>

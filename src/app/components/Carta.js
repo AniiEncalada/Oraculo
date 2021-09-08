@@ -1,9 +1,18 @@
 import React from "react";
 import { GiSeaDragon } from "react-icons/gi";
-export const Carta = ({ palo, valor, girada, valorGrupo, cartaIndex }) => {
+import { useDispatch } from "react-redux";
+import { girarCarta } from "../../features/oraculo/oraculoSlice";
+export const Carta = ({
+  palo,
+  valor,
+  girada,
+  valorGrupo,
+  cartaIndex,
+  habilitada,
+}) => {
   const dispatch = useDispatch();
   const onClickCaraPosterior = () => {
-    dispatch(girarCarta(valor, valorGrupo, cartaIndex));
+    if (habilitada) dispatch(girarCarta(valor, valorGrupo, cartaIndex));
   };
   return (
     <div className="carta">

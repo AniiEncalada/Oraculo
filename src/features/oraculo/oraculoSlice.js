@@ -14,6 +14,19 @@ const oraculoSlices = createSlice({
     asignarGrupos: (state, action) => {
       state.grupos = action.payload;
     },
+    girar: (state, action) => {
+      state.grupos[action.payload.grupoIndex].cartas[
+        action.payload.cartaIndex
+      ].girada = true;
+      state.grupos[action.payload.grupoIndex].jugando = false;
+    },
+    mover: (state, action) => {
+      state.grupos[action.payload.nuevoGrupoIndex].cartas.unshift(
+        state.grupos[action.payload.grupoIndex].cartas.pop()
+      );
+      state.grupos[action.payload.grupoIndex].jugando = false;
+      state.grupos[action.payload.nuevoGrupoIndex].jugando = true;
+    },
   },
 });
 
@@ -68,9 +81,28 @@ const agrupar = (a, n) => {
   return out;
 };
 
-const girarCarta =(valor, valorGrupo, cartaIndex)=>(dispatch, getState)=>{
-    const grupoIndex = getState().oraculo.grupos.findIndex(item => )
-}
+export const girarCarta =
+  (valor, valorGrupo, cartaIndex) => (dispatch, getState) => {
+    const grupoIndex = getState().oraculo.grupos.findIndex(
+      (item) => item.nombre === valorGrupo
+    );
 
-export const { asignarGrupos } = oraculoSlices.actions;
+    const nuevoGrupoIndex = getState().oraculo.grupos.findIndex(
+      (item) => item.nombre === valor
+    );
+
+    dispatch(girar({ grupoIndex, cartaIndex }));
+
+    setTimeout(() => {
+      dispatch(moverCarta(grupoIndex, nuevoGrupoIndex));
+    }, 1000);
+  };
+
+export const moverCarta =
+  (grupoIndex, nuevoGrupoIndex) => (dispatch, getState) => {
+    console.log(`moviendo`);
+    dispatch(mover({ grupoIndex, nuevoGrupoIndex }));
+  };
+
+export const { asignarGrupos, girar, mover } = oraculoSlices.actions;
 export default oraculoSlices.reducer;
